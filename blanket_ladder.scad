@@ -2,11 +2,11 @@
 use <parts.scad>;
 
 module side(length) {
-    tube(.75, .065, length);
+    circularTube(.75, .065, length);
 }
 
 module rung(length) {
-    tube(.375, .065, length);
+    circularTube(.375, .065, length);
 }
 
 ladderHeight = 72;

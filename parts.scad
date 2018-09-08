@@ -21,7 +21,7 @@ module angleIron(height, width, length, thickness) {
     }
 }
 
-module tube(outer, thickness, length) {
+module circularTube(outer, thickness, length) {
     outerRadius = outer / 2;
     innerRadius = outerRadius - thickness;
     difference() {
