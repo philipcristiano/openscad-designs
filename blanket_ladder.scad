@@ -1,6 +1,7 @@
 
 use <parts.scad>;
 
+angle = 10;
 sideTubeDiameter = .75;
 
 module side(length) {
@@ -15,6 +16,10 @@ module foot() {
     circularBar(1.5, .25);
 }
 
+module mountingBrack() {
+    flatBar(.125, .75, 2);
+}
+
 ladderHeight = 72;
 rungLength = 18;
 
@@ -22,7 +27,7 @@ foot();
 translate([rungLength, 0, 0]){
     foot();
 }
-rotate([10, 0, 0]) {
+rotate([angle, 0, 0]) {
     side(ladderHeight);
     translate([rungLength, 0, 0]) {
         side(ladderHeight);
@@ -35,4 +40,18 @@ rotate([10, 0, 0]) {
             }
         }
     }
+
+    translate([-.5 * sideTubeDiameter, -.5 * sideTubeDiameter, ladderHeight -1]) {
+        rotate([90 - angle, 0, 0]) {
+            mountingBrack();
+        }
+    }
+
+    translate([-.5 * sideTubeDiameter + rungLength, -.5 * sideTubeDiameter, ladderHeight -1]) {
+        rotate([90 - angle, 0, 0]) {
+            mountingBrack();
+        }
+    }
+
+
 }
