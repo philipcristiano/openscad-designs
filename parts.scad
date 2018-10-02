@@ -47,7 +47,7 @@ translate([ 10, 0, 0]) {
 }
 
 translate([ 22, 2, 0]) {
-    tube(4, .25, 12);
+    circularTube(4, .25, 12);
 }
 
 translate([ 30, 0, 0]) {
