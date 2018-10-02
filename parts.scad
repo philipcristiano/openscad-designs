@@ -35,6 +35,10 @@ module circularTube(outer, thickness, length) {
 
 }
 
+module circularBar(diameter, length) {
+        cylinder(h=length, r1=diameter/2, r2=diameter/2, $fn=32);
+}
+
 module flatBar(thickness, width, length) {
     cube([width, length, thickness]);
 }
@@ -56,3 +60,7 @@ translate([ 30, 0, 0]) {
     }
 }
 
+
+translate([ 40, 2, 0]) {
+    circularBar(4, 12);
+}
