@@ -1,12 +1,14 @@
 
 use <parts.scad>;
 
+sideTubeDiameter = .75;
+
 module side(length) {
-    circularTube(.75, .065, length);
+    circularBar(sideTubeDiameter, length);
 }
 
 module rung(length) {
-    circularTube(.375, .065, length);
+    circularBar(.375, length);
 }
 
 module foot() {
