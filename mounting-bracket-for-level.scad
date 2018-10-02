@@ -2,6 +2,7 @@ use <parts.scad>;
 
 module bar(length) {
     flatBar(1/16, 1, length);
+    echo("Flat bar: 1/16x1  Length: ", length);
 }
 
 length = 3;
