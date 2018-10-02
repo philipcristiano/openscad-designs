@@ -4,7 +4,7 @@ module bar(length) {
     flatBar(1/16, 1, length);
 }
 
-length = 2;
+length = 3;
 height = 3;
 
 rotate([90, 0, 0]) {
