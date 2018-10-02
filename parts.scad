@@ -3,8 +3,9 @@ module rectangularTube(height, width, length, thickness) {
     difference()
     {
         cube([height, width, length]);
-        translate([thickness, thickness, 0]) {
-            cube([height - 2*thickness, width - 2*thickness, length]);
+        // Ensure the inside sticks out a bit more to avoid clipping
+        translate([thickness, thickness, -1]) {
+            cube([height - 2*thickness, width - 2*thickness, length+2]);
         };
     }
 };
@@ -26,7 +27,10 @@ module circularTube(outer, thickness, length) {
     innerRadius = outerRadius - thickness;
     difference() {
         cylinder(length, outerRadius, outerRadius, $fn=32);
-        cylinder(length, innerRadius, innerRadius, $fn=32);
+        // Ensure the inside sticks out a bit more to avoid clipping
+        translate([0, 0, -1]) {
+            cylinder(length + 2, innerRadius, innerRadius, $fn=32);
+        }
     }
 
 }
