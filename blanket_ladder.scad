@@ -13,7 +13,7 @@ module rung(length) {
 }
 
 module foot() {
-    circularBar(1.5, .25);
+    circularBar(1.5, .125);
 }
 
 module mountingBrack() {
