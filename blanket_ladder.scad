@@ -1,7 +1,7 @@
 
 use <parts.scad>;
 
-angle = 10;
+angle = 5;
 sideTubeDiameter = .75;
 
 module side(length) {
