@@ -43,6 +43,20 @@ module flatBar(thickness, width, length) {
     cube([width, length, thickness]);
 }
 
+module perforatedPlate(length, width, thickness, holeSize, holeSpacing) {
+    radius = holeSize / 2;
+    difference() {
+        cube([length, width, thickness]);
+        for( x = [ 0:holeSpacing:length ] ) {
+            for ( y = [ 0:holeSpacing:width ]){
+                translate([x, y, 0]){
+                    cylinder( thickness*10 , radius, radius, $fn=32, center=true) ;
+                }
+            }
+        }
+    }
+}
+
 
 rectangularTube(4, 4, 12, .25);
 
@@ -60,7 +74,10 @@ translate([ 30, 0, 0]) {
     }
 }
 
-
 translate([ 40, 2, 0]) {
     circularBar(4, 12);
+}
+
+translate([ 50, 0, 0]) {
+    rotate([270, 270, 0]) perforatedPlate(12, 6, .036, .067, .125);
 }
