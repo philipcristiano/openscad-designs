@@ -6,14 +6,17 @@ sideTubeDiameter = .75;
 
 module side(length) {
     circularBar(sideTubeDiameter, length);
+    echo("Side - Diameter: ", sideTubeDiameter, " Length: ", length);
 }
 
 module rung(length) {
     circularBar(.375, length);
+    echo("Rung - Diameter: ", .375, " Length: ", length);
 }
 
 module foot() {
     circularBar(1.5, .125);
+    echo("Foot - Diameter: ", 1.5, " Length: ", .125);
 }
 
 module mountingBrack() {

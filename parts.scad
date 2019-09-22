@@ -35,6 +35,10 @@ module circularTube(outer, thickness, length) {
 
 }
 
+module sheet(width, length, thickness) {
+    cube([width, length, thickness]);
+}
+
 module circularBar(diameter, length) {
         cylinder(h=length, r1=diameter/2, r2=diameter/2, $fn=32);
 }
@@ -79,5 +83,9 @@ translate([ 40, 2, 0]) {
 }
 
 translate([ 50, 0, 0]) {
-    rotate([270, 270, 0]) perforatedPlate(12, 6, .036, .067, .125);
+    rotate([270, 270, 0]) perforatedPlate(12, 6, .036, .067, .5);
+}
+
+translate([ 60, 0, 0]) {
+    rotate([270, 270, 0]) sheet( 10, 10, .125 );
 }
