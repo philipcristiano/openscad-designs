@@ -13,9 +13,11 @@ siderailLength = bedLength - 2*structualWidth;
 crossLength = mattressWidth + 1;
 headboardHeight = 48;
 footboardHeightOffGround = 6;
-footboardLegHeight = bedHeight +10 ;
+footboardLegHeight = bedHeight + 10 ;
 footboardPanelHeight = 18;
-clearance = 6;
+footboardNumCrossPieces = 3;
+headboardHeightOffGround = 6;
+headboardPanelHeight = 36;
 squaretube_size = 1;
 
 angleIronThickness = .125;
@@ -54,23 +56,59 @@ module mattress() {
 module footboard() {
     // structuralTube(20);
     rotate([0, 90, 0]) {
-      translate([- squaretube_size, 0, footboardHeightOffGround]) {
+
+      translate([- squaretube_size, squaretube_size, footboardHeightOffGround]) {
         rectangularTube(squaretube_size, squaretube_size, footboardPanelHeight, .08);
       }
-      translate([-1*  crossLength  , 0, footboardHeightOffGround]) {
+      translate([-1*  crossLength  , squaretube_size, footboardHeightOffGround]) {
         rectangularTube(squaretube_size, squaretube_size, footboardPanelHeight, .08);
       }
       rotate([0, -90, 0]) {
-        translate([footboardHeightOffGround, 0, squaretube_size]) {
+
+        footboard_crosspiece_spacing = footboardPanelHeight / footboardNumCrossPieces;
+
+        for ( i = [0 : footboardNumCrossPieces - 1] ){
+          translate([footboardHeightOffGround + i * footboard_crosspiece_spacing, squaretube_size, squaretube_size]) {
+            rectangularTube(squaretube_size, squaretube_size, crossLength - 2* squaretube_size, .08);
+          }
+        }
+        // Top piece of the footboard
+        translate([footboardHeightOffGround + footboardPanelHeight - squaretube_size, squaretube_size, squaretube_size]) {
           rectangularTube(squaretube_size, squaretube_size, crossLength - 2* squaretube_size, .08);
         }
-        translate([footboardHeightOffGround + 6, 0, squaretube_size]) {
+      }
+    }
+}
+
+module headboard() {
+    // structuralTube(20);
+    rotate([0, 90, 0]) {
+      translate([- squaretube_size, 0, headboardHeightOffGround]) {
+        rectangularTube(squaretube_size, squaretube_size, headboardPanelHeight, .08);
+      }
+      translate([-1*  crossLength  , 0, headboardHeightOffGround]) {
+        rectangularTube(squaretube_size, squaretube_size, headboardPanelHeight, .08);
+      }
+      rotate([0, -90, 0]) {
+        translate([headboardHeightOffGround, 0, squaretube_size]) {
           rectangularTube(squaretube_size, squaretube_size, crossLength - 2* squaretube_size, .08);
         }
-        translate([footboardHeightOffGround + 12, 0, squaretube_size]) {
+        translate([headboardHeightOffGround + 6, 0, squaretube_size]) {
           rectangularTube(squaretube_size, squaretube_size, crossLength - 2* squaretube_size, .08);
         }
-        translate([footboardHeightOffGround + footboardPanelHeight - squaretube_size, 0, squaretube_size]) {
+        translate([headboardHeightOffGround + 12, 0, squaretube_size]) {
+          rectangularTube(squaretube_size, squaretube_size, crossLength - 2* squaretube_size, .08);
+        }
+        translate([headboardHeightOffGround + 18, 0, squaretube_size]) {
+          rectangularTube(squaretube_size, squaretube_size, crossLength - 2* squaretube_size, .08);
+        }
+        translate([headboardHeightOffGround + 24, 0, squaretube_size]) {
+          rectangularTube(squaretube_size, squaretube_size, crossLength - 2* squaretube_size, .08);
+        }
+        translate([headboardHeightOffGround + 30, 0, squaretube_size]) {
+          rectangularTube(squaretube_size, squaretube_size, crossLength - 2* squaretube_size, .08);
+        }
+        translate([headboardHeightOffGround + headboardPanelHeight - squaretube_size, 0, squaretube_size]) {
           rectangularTube(squaretube_size, squaretube_size, crossLength - 2* squaretube_size, .08);
         }
       }
@@ -131,5 +169,10 @@ translate([ 0, structualWidth, 0]) {
   rotate([ 0, 270, 270 ]) {
     footboard();
   }
+}
 
+translate([ bedLength - squaretube_size, structualWidth, 0]) {
+  rotate([ 0, 270, 270 ]) {
+    headboard();
+  }
 }
