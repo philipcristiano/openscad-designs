@@ -18,6 +18,7 @@ footboardPanelHeight = 18;
 footboardNumCrossPieces = 3;
 headboardHeightOffGround = 6;
 headboardPanelHeight = 36;
+headboardNumCrossPieces = 6;
 squaretube_size = 1;
 
 angleIronThickness = .125;
@@ -83,37 +84,28 @@ module footboard() {
 module headboard() {
     // structuralTube(20);
     rotate([0, 90, 0]) {
-      translate([- squaretube_size, 0, headboardHeightOffGround]) {
+
+      translate([- squaretube_size, squaretube_size, headboardHeightOffGround]) {
         rectangularTube(squaretube_size, squaretube_size, headboardPanelHeight, .08);
       }
-      translate([-1*  crossLength  , 0, headboardHeightOffGround]) {
+      translate([-1*  crossLength  , squaretube_size, headboardHeightOffGround]) {
         rectangularTube(squaretube_size, squaretube_size, headboardPanelHeight, .08);
       }
       rotate([0, -90, 0]) {
-        translate([headboardHeightOffGround, 0, squaretube_size]) {
-          rectangularTube(squaretube_size, squaretube_size, crossLength - 2* squaretube_size, .08);
+
+        headboard_crosspiece_spacing = headboardPanelHeight / headboardNumCrossPieces;
+
+        for ( i = [0 : headboardNumCrossPieces - 1] ){
+          translate([headboardHeightOffGround + i * headboard_crosspiece_spacing, squaretube_size, squaretube_size]) {
+            rectangularTube(squaretube_size, squaretube_size, crossLength - 2* squaretube_size, .08);
+          }
         }
-        translate([headboardHeightOffGround + 6, 0, squaretube_size]) {
-          rectangularTube(squaretube_size, squaretube_size, crossLength - 2* squaretube_size, .08);
-        }
-        translate([headboardHeightOffGround + 12, 0, squaretube_size]) {
-          rectangularTube(squaretube_size, squaretube_size, crossLength - 2* squaretube_size, .08);
-        }
-        translate([headboardHeightOffGround + 18, 0, squaretube_size]) {
-          rectangularTube(squaretube_size, squaretube_size, crossLength - 2* squaretube_size, .08);
-        }
-        translate([headboardHeightOffGround + 24, 0, squaretube_size]) {
-          rectangularTube(squaretube_size, squaretube_size, crossLength - 2* squaretube_size, .08);
-        }
-        translate([headboardHeightOffGround + 30, 0, squaretube_size]) {
-          rectangularTube(squaretube_size, squaretube_size, crossLength - 2* squaretube_size, .08);
-        }
-        translate([headboardHeightOffGround + headboardPanelHeight - squaretube_size, 0, squaretube_size]) {
+        // Top piece of the headboard
+        translate([headboardHeightOffGround + headboardPanelHeight - squaretube_size, squaretube_size, squaretube_size]) {
           rectangularTube(squaretube_size, squaretube_size, crossLength - 2* squaretube_size, .08);
         }
       }
     }
-
 }
 
 //
